@@ -15,6 +15,8 @@ export default function Login() {
         if (!users || users.length === 0) {
             const defaultAdmin = [
                 { username: "admin", password: "1234", role: "admin" }
+                
+            { username: "user", password: "123456", role: "user" } // 👈 Yeni kullanıcı eklendi
             ];
             localStorage.setItem("users", JSON.stringify(defaultAdmin));
         }
