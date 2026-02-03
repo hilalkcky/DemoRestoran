@@ -17,6 +17,7 @@ export default function Login() {
                 { username: "admin", password: "1234", role: "admin" },
                 { username: "user", password: "123456", role: "user" },
             
+
             ];
             localStorage.setItem("users", JSON.stringify(defaultAdmin));
         }
