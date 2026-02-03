@@ -8,20 +8,21 @@ export default function Login() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    // 🔹 İlk açılışta admin yoksa oluştur
-    useEffect(() => {
-        const users = JSON.parse(localStorage.getItem("users"));
+    
+  useEffect(() => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        if (!users || users.length === 0) {
-            const defaultAdmin = [
-                { username: "admin", password: "1234", role: "admin" },
-                { username: "user", password: "123456", role: "user" },
-            
+    // Eğer kullanıcı listesi boşsa VEYA içinde "user" isimli biri yoksa listeyi tazele
+    const hasUser = users.find(u => u.username === "user");
 
-            ];
-            localStorage.setItem("users", JSON.stringify(defaultAdmin));
-        }
-    }, []);
+    if (users.length === 0 || !hasUser) {
+        const defaultAdmin = [
+            { username: "admin", password: "1234", role: "admin" },
+            { username: "user", password: "123456", role: "user" }
+        ];
+        localStorage.setItem("users", JSON.stringify(defaultAdmin));
+    }
+}, []);
 
     const handleLogin = () => {
         const users = JSON.parse(localStorage.getItem("users")) || [];
